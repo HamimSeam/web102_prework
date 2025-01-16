@@ -68,6 +68,15 @@ body {
     box-shadow: 0 0 30px lightblue;
 }
 
+#game-card-modal {
+    width: 50vw;
+    height: 80vh;
+}
+
+.close-btn-container {
+    text-align: right;
+}
+
 #button-container {
     text-align: center;
 }

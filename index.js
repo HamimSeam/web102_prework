@@ -25,6 +25,9 @@ function deleteChildElements(parent) {
 // grab the element with the id games-container
 const gamesContainer = document.getElementById("games-container");
 
+// OPTIONAL ADDITION: grab the modal by id
+const modal = document.getElementById("game-card-modal");
+
 // create a function that adds all data from the games array to the page
 function addGamesToPage(games) {
   // loop over each item in the data
@@ -40,11 +43,29 @@ function addGamesToPage(games) {
     // TIP: if your images are not displaying, make sure there is space
     // between the end of the src attribute and the end of the tag ("/>")
     gameDiv.innerHTML = `
-        <h3>${game.name}</h3>
-        <img class="game-img" src="${game.img}" />
-        <p>${game.description}</p>
-        <p>Backers: ${game.backers}</p>
+      <h3>${game.name}</h3>
+      <img class="game-img" src="${game.img}" />
+      <p>${game.description}</p>
+      <p>Backers: ${game.backers}</p>
     `;
+    
+    const closeBtnContainer = document.createElement("div");
+    closeBtnContainer.classList.add("close-btn-container");
+
+    const closeBtn = document.createElement("button");
+    closeBtn.innerText = "X";
+    closeBtn.onclick = () => {
+      deleteChildElements(modal);
+      modal.close();
+    };
+
+    closeBtnContainer.appendChild(closeBtn);
+
+    gameDiv.addEventListener("click", () => {
+      modal.innerHTML = gameDiv.innerHTML;
+      modal.prepend(closeBtnContainer);
+      modal.showModal();
+    });
 
     // append the game to the games-container
     document.getElementById("games-container").appendChild(gameDiv);
@@ -162,9 +183,7 @@ const fundingExplanationStr = `A total of ${totalRaisedStr} has been raised for 
 
 // create a new DOM element containing the template string and append it to the description container
 const fundingExplanation = document.createElement("p");
-console.log(fundingExplanationStr);
 fundingExplanation.innerHTML = fundingExplanationStr;
-console.log(fundingExplanation);
 descriptionContainer.appendChild(fundingExplanation);
 
 /************************************************************************************
