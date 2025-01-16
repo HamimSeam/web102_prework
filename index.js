@@ -27,6 +27,13 @@ const gamesContainer = document.getElementById("games-container");
 
 // OPTIONAL ADDITION: grab the modal by id
 const modal = document.getElementById("game-card-modal");
+const modalCloseBtn = modal.querySelector(".close-btn");
+modalCloseBtn.onclick = () => {
+  modal.close();
+};
+
+const modalLeftPanel = modal.querySelector(".left-panel");
+const modalRightPanel = modal.querySelector(".right-panel");
 
 // create a function that adds all data from the games array to the page
 function addGamesToPage(games) {
@@ -48,22 +55,38 @@ function addGamesToPage(games) {
       <p>${game.description}</p>
       <p>Backers: ${game.backers}</p>
     `;
-    
-    const closeBtnContainer = document.createElement("div");
-    closeBtnContainer.classList.add("close-btn-container");
 
-    const closeBtn = document.createElement("button");
-    closeBtn.innerText = "X";
-    closeBtn.onclick = () => {
-      deleteChildElements(modal);
-      modal.close();
-    };
+    // const closeBtnContainer = document.createElement("div");
+    // closeBtnContainer.classList.add("close-btn-container");
 
-    closeBtnContainer.appendChild(closeBtn);
+    // const closeBtn = document.createElement("button");
+    // closeBtn.innerText = "X";
+    // closeBtn.onclick = () => {
+    //   deleteChildElements(modal);
+    //   modal.close();
+    // };
+
+    // closeBtnContainer.appendChild(closeBtn);
 
     gameDiv.addEventListener("click", () => {
-      modal.innerHTML = gameDiv.innerHTML;
-      modal.prepend(closeBtnContainer);
+      modalLeftPanel.innerHTML = `
+        <h1>${game.name}</h1>
+        <img class="game-img" src="${game.img}" />
+        <p>${game.description}</p>
+      `;
+
+      const goalPercentage = (game.pledged / game.goal) * 100;
+      console.log(goalPercentage);
+      modalRightPanel.innerHTML = `
+        <p>
+          Backers: ${game.backers}<br>
+        </p>
+        
+        <label for="progress-bar">$${game.pledged.toLocaleString()} / $${game.goal.toLocaleString()} raised</label><br>
+        <progress id="progress-bar" max="100" value="${goalPercentage}">
+        </div>
+      `;
+
       modal.showModal();
     });
 

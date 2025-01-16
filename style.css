@@ -69,8 +69,25 @@ body {
 }
 
 #game-card-modal {
-    width: 50vw;
+    width: 80vw;
     height: 80vh;
+}
+
+#game-card-modal .main-content {
+    display: flex;
+}
+
+#game-card-modal .main-content > * {
+    flex: 1 1 0;
+    margin: 20px;
+}
+
+#game-card-modal .right-panel {
+    font-size: 36px;
+    display: flex;
+    flex-direction: column;
+    /* align-content: center; */
+    justify-content: center;
 }
 
 .close-btn-container {
