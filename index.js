@@ -56,18 +56,7 @@ function addGamesToPage(games) {
       <p>Backers: ${game.backers}</p>
     `;
 
-    // const closeBtnContainer = document.createElement("div");
-    // closeBtnContainer.classList.add("close-btn-container");
-
-    // const closeBtn = document.createElement("button");
-    // closeBtn.innerText = "X";
-    // closeBtn.onclick = () => {
-    //   deleteChildElements(modal);
-    //   modal.close();
-    // };
-
-    // closeBtnContainer.appendChild(closeBtn);
-
+    //prepare popup contents
     gameDiv.addEventListener("click", () => {
       modalLeftPanel.innerHTML = `
         <h1>${game.name}</h1>
@@ -76,7 +65,6 @@ function addGamesToPage(games) {
       `;
 
       const goalPercentage = (game.pledged / game.goal) * 100;
-      console.log(goalPercentage);
       modalRightPanel.innerHTML = `
         <p>
           Backers: ${game.backers}<br>
@@ -191,7 +179,7 @@ const descriptionContainer = document.getElementById("description-container");
 
 // use filter or reduce to count the number of unfunded games
 const numUnfundedGames = GAMES_JSON.reduce((acc, game) => {
-  return acc + (game.pledged >= game.goal);
+  return acc + (game.pledged < game.goal);
 }, 0);
 
 // create a string that explains the number of unfunded games using the ternary operator
