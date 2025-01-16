@@ -19,18 +19,13 @@ The following **optional** features are implemented:
 
 * [x] A popup that appears when you click on a game card, giving more info about the game's funding progress.
 
-## Video Walkthrough
+## GIF Walkthrough
 
 Here's a walkthrough of implemented features:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='assets/demo.gif' title='GIF Walkthrough' width='' alt='GIF Walkthrough' />
 
-<!-- Replace this with whatever GIF tool you used! -->
-GIF created with ...  
-<!-- Recommended tools:
-[Kap](https://getkap.co/) for macOS
-[ScreenToGif](https://www.screentogif.com/) for Windows
-[peek](https://github.com/phw/peek) for Linux. -->
+GIF created with [ScreenToGif](https://www.screentogif.com/)
 
 ## Notes
 - While creating the dialog, I had to make a conscious decision between how much I would prestructure within the HTML and how much should be inserted to the DOM directly from JavaScript.
